@@ -1,0 +1,19 @@
+services:
+  mongo:
+    image: mongo
+    container_name: ngsi_mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+
+  entregable:
+    image: entregable2
+    container_name: entregable2
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongo
+    links:
+      - "mongo:mongo"
+
